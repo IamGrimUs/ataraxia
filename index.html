@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>visual music</title>
+    <link rel="stylesheet" href="_css/styles.css">
+    <link rel="stylesheet" href="_css/font-awesome.min.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>document.body.className += ' fade-out';</script>
+    <main>
+      <button class="action-menu-button">
+        <div class="action-menu">
+          <div class="dot"></div>
+          <div class="pulse"></div>
+        </div>
+      </button>
+      <div class="hidden content-frame js-content-frame">
+        <p class="image-name js-image-name">
+        </p>
+        <p class="image-location js-location-city">
+        </p>
+        <p class="photographer-name js-photographer-name">
+          <i class="icon-camera"></i> by
+        </p>
+      </div>
+    </main>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script>
+  $(function() {
+    $('body').removeClass('fade-out');
+    });
+  </script>
+  <script src="_js/scripts.js"></script>
+  </body>
+</html>

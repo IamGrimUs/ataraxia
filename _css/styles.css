@@ -1,0 +1,195 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+  }
+body {
+  line-height: 1;
+  }
+ol, ul {
+  list-style: none;
+  }
+blockquote, q {
+  quotes: none;
+  }
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+  }
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  }
+/* app styles */
+body {
+  opacity: 1;
+  line-height: 1.5;
+  transition: 2s opacity;
+  background-color: #333;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:100%;
+  }
+body.fade-out {
+    opacity: 0;
+    transition: none;
+  }
+main {
+  height: 100vh;
+  /*border: 3px solid white;*/
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+  }
+p {
+  margin-top: .25em;
+  font-size: 1em;
+  text-align: left;
+  color: #fff;
+  text-shadow: 0 0 4px 4px rgba(0, 0, 0, 1);
+  }
+p:first-child {
+  margin-top: 0;
+}
+i {
+  display: inline-block;
+  font-size: .75em;
+  color: #fff;
+  padding-right: .5em;
+  }
+.content-frame {
+  flex: 0 0 auto;
+  margin-top:2em;
+  margin-left:1.8em;
+  opacity: 1;
+  transition: opacity 3s;
+  /*background-color: rgba(0, 0, 0,.35);*/
+  /*padding-left: 1em;
+  margin-bottom: 1em;*/
+  /*border:1px solid white;*/
+  /*overflow: hidden;*/
+  }
+.hidden {
+  opacity:0;
+  transition: opacity 3s;
+  }
+.action-menu-button {
+  flex: 0 0 auto;
+  background-color: inherit;
+  border: none;
+  margin-top:2.75em;
+  margin-left:2.75em;
+  }
+.action-menu {
+  /*border:1px solid red;*/
+  position: relative;
+  background: #45453f;
+  border: none;
+  background-color: inherit;
+  }
+.pulse {
+  width: 10px;
+  height: 10px;
+  border: 5px solid rgba(255, 255, 255, .5);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 10;
+  position: absolute;
+  }
+.dot {
+  border: 10px solid rgba(255, 255, 255, .5);
+  background: transparent;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  height: 50px;
+  width: 50px;
+  -webkit-animation: pulse 5s ease-out;
+  -moz-animation: pulse 5s ease-out;
+  animation: pulse 5s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  z-index: 1;
+  opacity: 0;
+  }
+@-moz-keyframes pulse {
+  0% {
+    -moz-transform: scale(0);
+    opacity: 0.0;
+  }
+  25% {
+    -moz-transform: scale(0);
+    opacity: 0.1;
+  }
+  50% {
+    -moz-transform: scale(0.1);
+    opacity: 0.3;
+  }
+  75% {
+    -moz-transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    -moz-transform: scale(1);
+    opacity: 0.0;
+  }
+}
+@-webkit-keyframes "pulse" {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0.0;
+  }
+  25% {
+    -webkit-transform: scale(0);
+    opacity: 0.1;
+  }
+  50% {
+    -webkit-transform: scale(0.1);
+    opacity: 0.3;
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0.0;
+  }
+}
