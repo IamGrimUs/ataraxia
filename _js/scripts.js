@@ -84,13 +84,14 @@ function imageBackgroundSlideShow() {
   // console.log(imageList[1]);
   // imageShow()
   while (placeHolder < imageList.length -1) {
-    setTimeout(imageShow, 5000);
+    setTimeout(imageShow, 15000);
     displayContent ();
-    placeHolder++;
     console.log(placeHolder);
+    placeHolder++;
     }
   }
 
+//engage the program
 $(getImage);
 
 
