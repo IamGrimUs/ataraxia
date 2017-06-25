@@ -52,7 +52,7 @@ function processLocation(data) {
 //use getJSON call to the unsplash API requesting a collection of images
 function getImage() {
   var query = {
-    per_page: 3,
+    per_page: 2,
     }
   $.getJSON(UNSPLASH_URL, query).then(showMeData).then(processLocation).then(imageBackgroundSlideShow);
   };
@@ -83,9 +83,9 @@ function imageBackgroundSlideShow() {
   // console.log(imageList[0]);
   // console.log(imageList[1]);
   // imageShow()
-  while (placeHolder < 2) {
-    setTimeout(imageShow, 5000)
-    displayContent ()
+  while (placeHolder < imageList.length -1) {
+    setTimeout(imageShow, 5000);
+    displayContent ();
     placeHolder++;
     console.log(placeHolder);
     }
