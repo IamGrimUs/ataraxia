@@ -48,7 +48,7 @@ table {
 /* app styles */
 body {
   opacity: 1;
-  line-height: 1.5;
+  line-height: 1.25;
   transition: 2s opacity;
   background-color: #333;
   background-repeat: no-repeat;
@@ -59,10 +59,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
   height:100%;
-  }
-body.fade-out {
-    opacity: 0;
-    transition: none;
   }
 main {
   height: 100vh;
