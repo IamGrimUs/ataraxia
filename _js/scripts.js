@@ -83,10 +83,11 @@ function imageBackgroundSlideShow() {
   // console.log(imageList[0]);
   // console.log(imageList[1]);
   // imageShow()
-  while (placeHolder < imageList.length) {
+  while (placeHolder < 2) {
     setTimeout(imageShow, 5000)
     displayContent ()
     placeHolder++;
+    console.log(placeHolder);
     }
   }
 
