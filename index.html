@@ -8,28 +8,19 @@
   </head>
   <body>
     <main>
-      <button class="action-menu-button">
-        <div class="action-menu">
-          <div class="dot"></div>
-          <div class="pulse"></div>
-        </div>
-      </button>
-      <div class="hidden content-frame js-content-frame">
-        <p class="image-name js-image-name">
-        </p>
-        <p class="image-location js-location-city">
-        </p>
-        <div class="photographer-frame">
-          <i class="icon-camera"></i> by
-          <span class="photographer-name js-photographer-name">
-          </span>
-        </div>
+      <div>
+        <ul class="cb-slideshow">
+        </ul>
+      </div>
+      <div class="content-frame">
+        <p class="image-information"></p>
+        <p class="photographer-name js-photographer-name"></p>
       </div>
     </main>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  <script src="_js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="_js/data.js"></script>
+    <!-- <script src="_js/scripts.js"></script> -->
+    <script src="node_modules/lodash/lodash.min.js"></script>
+    <script src="_js/app.js"></script>
   </body>
 </html>
