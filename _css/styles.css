@@ -266,6 +266,9 @@ body {
     #919191 100%
   );
   z-index: 100;
+  opacity: 1;
+  /*display: block;*/
+  transition: all 8s;
 }
 .spinner-wrapper h1 {
   position: relative;
@@ -277,4 +280,9 @@ body {
   .spinner-wrapper h1 {
     font-size: 8.4em;
   }
+}
+.hide-preloader {
+  position: absolute;
+  opacity: 0;
+  /*display: none;*/
 }
