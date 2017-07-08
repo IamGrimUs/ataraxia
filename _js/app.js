@@ -12,14 +12,14 @@ function callUnsplashAPI() {
     per_page: 2
   };
   $.getJSON(COLLECTIONS_URL, query)
-    .then(saveApiData)
+    .then(saveUnsplashApiData)
     .then(shuffleImageArray)
     .then(saveApiObjectProperties)
-    .then(render);
+    .then(renderImages);
 }
 
 //initial callback function populates the array of returned images, the photographers name & the photo IDs
-function saveApiData(data) {
+function saveUnsplashApiData(data) {
   STATE.images.push(...data);
   console.log("STATE.images:");
   console.log(STATE.images);
@@ -59,7 +59,24 @@ function saveApiObjectProperties() {
   }
 }
 
-function render() {
+//add the images into the html for slideshow display
+function appendHTMLElement(backgroundImage, portfolioUrl, firstName, lastName) {
+  console.log("appending li...");
+  let imageBlock = `<li class="slideshow-image--hide js-slideshowFrame">
+            <span style="background-image: url(${backgroundImage})"></span>
+            <div>
+            <p class="photographer-info"><a href="${portfolioUrl}"><i class="fa fa-camera-retro" id="camera-icon" aria-hidden="true"></i> by ${firstName} ${lastName}</a></p>
+            <p class="disclaimer">provided by unsplash</p>
+            </div>
+            <blockquote cite="https://forismatic.com/en/">
+              <p class="quote-frame js-quote-frame">" "</p>
+              <p class="quote-author-frame js-quote-author-frame"></p>
+            </blockquote>
+          </li>`;
+  $(".slideshow").append(imageBlock);
+}
+
+function renderImages() {
   cacheFirstImage(displayImageSlideShow);
 }
 
@@ -89,6 +106,7 @@ function displayImageSlideShow(uniqueImageId) {
     $(slides[slideIndex - 1]).addClass("slideshow-image--reveal");
     $(slides[slideIndex - 1]).removeClass("slideshow-image--hide");
     setTimeout(showSlides, 90000); // Change image every 90 seconds
+    callForinsmaticApi();
   }
   hidePreloader();
 }
@@ -98,17 +116,26 @@ function hidePreloader() {
   $(".spinner-wrapper").addClass("hide-preloader");
 }
 
-//add the images into the html for slideshow display
-function appendHTMLElement(backgroundImage, portfolioUrl, firstName, lastName) {
-  console.log("appending li...");
-  let imageBlock = `<li class="slideshow-image--hide js-slideshowFrame">
-            <span style="background-image: url(${backgroundImage})"></span>
-            <div>
-            <p class="photographer-info"><a href="${portfolioUrl}"><i class="fa fa-camera-retro" id="camera-icon" aria-hidden="true"></i> by ${firstName} ${lastName}</a></p>
-            <p class="disclaimer">provided by unsplash</p>
-            </div>
-          </li>`;
-  $(".slideshow").append(imageBlock);
+// https://api.jquery.com/jquery.getjson/#jsonp
+function callForinsmaticApi() {
+  console.log("calling forinsmatic...");
+  $.getJSON(
+    "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?"
+  ).done(saveForismaticApiData);
+}
+function saveForismaticApiData(response) {
+  // $('#log').prepend('<pre>' + $('#response').html() + '</pre>');
+  // $('#response').html(JSON.stringify(response));
+  console.log(response);
+  let quoteText = response.quoteText;
+  let quoteAuthor = response.quoteAuthor;
+  diplayQuote(quoteText, quoteAuthor);
+}
+
+function diplayQuote(quoteText, quoteAuthor) {
+  console.log("displaying quote...");
+  $(".js-quote-frame").text(quoteText);
+  $(".js-quote-author-frame").text(quoteAuthor);
 }
 
 $(function() {
