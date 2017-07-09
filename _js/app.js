@@ -66,7 +66,6 @@ function appendHTMLElement(backgroundImage, portfolioUrl, firstName, lastName) {
             <span style="background-image: url(${backgroundImage})"></span>
             <div class="photo-info-frame">
               <p class="photographer-info"><a href="${portfolioUrl}"><i class="fa fa-camera-retro" id="camera-icon" aria-hidden="true"></i> by ${firstName} ${lastName}</a></p>
-              <p class="disclaimer">provided by unsplash</p>
             </div>
             <blockquote cite="https://forismatic.com/en/">
               <p class="quote-frame js-quote-frame">" "</p>
