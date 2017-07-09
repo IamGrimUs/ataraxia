@@ -165,7 +165,7 @@ body {
   z-index: 2;
   width: 100%;
   text-align: center;
-  top: 5%;
+  top: 8%;
 }
 @media screen and (min-width: 768px) {
   .slideshow li div {
@@ -194,7 +194,7 @@ body {
 .spinner {
   position: absolute;
   top: 38%;
-  left: 48%;
+  left: 50%;
   width: 40px;
   height: 40px;
   position: relative;
@@ -277,8 +277,15 @@ body {
   transition: opacity 8s;
   transition: display 8s 4s;
 }
+.hide-preloader {
+  position: absolute;
+  opacity: 0;
+  display: none;
+}
 .spinner-wrapper h1 {
   position: relative;
+  font-family: 'Great Vibes', cursive;
+  color: #333333;
   top: 38%;
   text-align: center;
   font-size: 5.5em;
@@ -288,11 +295,7 @@ body {
     font-size: 8.4em;
   }
 }
-.hide-preloader {
-  position: absolute;
-  opacity: 0;
-  display: none;
-}
+
 .slideshow-image--hide {
   opacity: 0;
   transition: all 8s;
@@ -309,6 +312,8 @@ body {
   letter-spacing: .06em;
   font-family: 'Great Vibes', cursive;
   /* text-align: center; */
+  opacity: 1;
+  transition: all 1s;
 }
 @media screen and (min-width: 768px) {
   .photographer-info {
@@ -325,6 +330,8 @@ body {
   font-family: arial;
   font-size: 1em;
   color: rgba(241, 241, 241, .8);
+  opacity: 1;
+  transition: all 1s;
 }
 @media screen and (min-width: 768px) {
   .disclaimer {
@@ -341,6 +348,8 @@ blockquote {
   color: rgba(241, 241, 241, .7);
   transition: color .5s;
   padding: 0 1em;
+  opacity: 1;
+  transition: all 1s;
 }
 blockquote:hover {
   color: rgba(241, 241, 241, 1);
@@ -379,7 +388,7 @@ blockquote:hover {
 /* menu */
 .menu-frame {
   right: 12%;
-  top: 1.75%;
+  top: 2.5%;
   position: absolute;
   background: #45453f;
   cursor: pointer;
@@ -401,17 +410,17 @@ blockquote:hover {
 .pulse {
   width: 10px;
   height: 10px;
-  border: 5px solid #f1f1f1;
+  border: 5px solid rgba(136, 167, 200, .6);
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-radius: 30px;
-  background-color: rgba(241, 241, 241, .07);
+  background-color: rgba(136, 167, 200, .3);
   z-index: 1;
   position: absolute;
 }
 
 .dot {
-  border: 10px solid #f1f1f1;
+  border: 10px solid rgba(136, 167, 200, .7);
   background: transparent;
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
@@ -475,4 +484,99 @@ blockquote:hover {
     -webkit-transform: scale(1);
     opacity: 0.0;
   }
+}
+.site-message-frame {
+  background-color: rgba(241, 241, 241, .85);
+  position: absolute;
+  padding: 1.5em 1.5em;
+  border-radius: 10px;
+  width: 80%;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 10%;
+  left: 0;
+  right: 0;
+  color: #333333;
+  margin-bottom: 3em;
+  opacity: 1;
+  transition: top .5s;
+  transition: opacity 1s .5s;
+}
+.site-message-headline {
+  text-align: center;
+  font-size: 3.5em;
+  font-family: 'Great Vibes', cursive;
+}
+.title-definition,
+.image-timer-disclaimer {
+  margin-bottom: 1em;
+  text-align: center;
+  font-size: .8em;
+  line-height: 1.25;
+}
+.image-timer-disclaimer {
+  margin-top: 2em;
+  text-align: left;
+  margin-bottom: 0;
+}
+.site-message-content {
+  margin-top: 1em;
+  font-size: 1.25em;
+  line-height: 1.5;
+}
+.site-message-frame label {
+  margin-top: 2em;
+  font-size: 1.25em;
+  display: block;
+  cursor: pointer;
+}
+.site-message-frame label:last-child {
+  margin-top: 1em;
+}
+@media screen and (min-width: 580px) {
+  .site-message-frame label {
+    display: inline-block;
+  }
+  .site-message-frame label:last-child {
+    margin-left: 2em;
+  }
+}
+.site-message-frame input {
+  cursor: pointer;
+}
+@media screen and (min-width: 580px) {
+  .site-message-frame {
+    padding: 1.5em 3em;
+    width: 60%;
+    max-width: 600px;
+    top: 25%;
+  }
+  .site-message-headline {
+    font-size: 4em;
+  }
+  .title-definition,
+  .image-timer-disclaimer {
+    font-size: 1em;
+  }
+}
+.hidden-message {
+  /*   top: 15%; */
+  opacity: 0;
+  /*   z-index: -1; */
+  /* transition: top .5s; */
+  transition: opacity 1s;
+  /* transition: z-index 2s 1s; */
+}
+.hide-me {
+  opacity: 0;
+  transition: all .5s;
+}
+.reveal-for-good {
+  display: block;
+}
+.hidden-for-good {
+  display: none;
+}
+.image-timer-disclaimer {
 }

@@ -9,7 +9,7 @@ const STATE = {
 //use getJSON call to the unsplash API requesting a collection of images
 function callUnsplashAPI() {
   let query = {
-    per_page: 2
+    per_page: 3
   };
   $.getJSON(COLLECTIONS_URL, query)
     .then(saveUnsplashApiData)
@@ -64,9 +64,9 @@ function appendHTMLElement(backgroundImage, portfolioUrl, firstName, lastName) {
   console.log("appending li...");
   let imageBlock = `<li class="slideshow-image--hide js-slideshowFrame">
             <span style="background-image: url(${backgroundImage})"></span>
-            <div>
-            <p class="photographer-info"><a href="${portfolioUrl}"><i class="fa fa-camera-retro" id="camera-icon" aria-hidden="true"></i> by ${firstName} ${lastName}</a></p>
-            <p class="disclaimer">provided by unsplash</p>
+            <div class="photo-info-frame">
+              <p class="photographer-info"><a href="${portfolioUrl}"><i class="fa fa-camera-retro" id="camera-icon" aria-hidden="true"></i> by ${firstName} ${lastName}</a></p>
+              <p class="disclaimer">provided by unsplash</p>
             </div>
             <blockquote cite="https://forismatic.com/en/">
               <p class="quote-frame js-quote-frame">" "</p>
@@ -138,6 +138,63 @@ function diplayQuote(quoteText, quoteAuthor) {
   $(".js-quote-author-frame").text(quoteAuthor);
 }
 
+function menuClick() {
+  $(".pulse").click(function() {
+    $(".site-message-frame").toggleClass("hidden-message");
+    $(".photo-info-frame p").toggleClass("hide-me");
+    $(".js-slideshowFrame blockquote").toggleClass("hide-me");
+  });
+}
+
+function askToRemoveQuotes() {
+  $("#removeQuote").val($(this).is(":checked"));
+
+  $("#removeQuote").change(function() {
+    if ($(this).is(":checked")) {
+      $(this).attr("checked", hideQuote);
+    } else {
+      $(this).attr("checked", displayQuote);
+    }
+    $("#removeQuote").val($(this).is(":checked"));
+  });
+}
+
+function askToRemovePhotographer() {
+  $("#removePhotographer").val($(this).is(":checked"));
+
+  $("#removePhotographer").change(function() {
+    if ($(this).is(":checked")) {
+      $(this).attr("checked", hidePhotographer);
+    } else {
+      $(this).attr("checked", displayPhotographer);
+    }
+    $("#removePhotographer").val($(this).is(":checked"));
+  });
+}
+
+function hideQuote() {
+  $(".js-slideshowFrame blockquote").removeClass("reveal-for-good");
+  $(".js-slideshowFrame blockquote").addClass("hidden-for-good");
+}
+
+function displayQuote() {
+  $(".js-slideshowFrame blockquote").removeClass("hidden-for-good");
+  $(".js-slideshowFrame blockquote").addClass("reveal-for-good");
+}
+
+function hidePhotographer() {
+  $(".photo-info-frame p").removeClass("reveal-for-good");
+  $(".photo-info-frame p").addClass("hidden-for-good");
+}
+
+function displayPhotographer() {
+  $(".photo-info-frame p").removeClass("hidden-for-good");
+  $(".photo-info-frame p").addClass("reveal-for-good");
+}
+
 $(function() {
   callUnsplashAPI();
+  menuClick();
+  askToRemoveQuotes();
+  askToRemovePhotographer();
 });
