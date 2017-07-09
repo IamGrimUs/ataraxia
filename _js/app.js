@@ -9,7 +9,7 @@ const STATE = {
 //use getJSON call to the unsplash API requesting a collection of images
 function callUnsplashAPI() {
   let query = {
-    per_page: 3
+    per_page: 15
   };
   $.getJSON(COLLECTIONS_URL, query)
     .then(saveUnsplashApiData)
