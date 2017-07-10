@@ -158,7 +158,7 @@ main {
   );
   z-index: 4;
   opacity: 1;
-  transition: opacity 2s, z-index 1s 2s;
+  transition: opacity 2s, z-index .5s 2s;
 }
 
 .spinner-wrapper h1 {
@@ -211,7 +211,7 @@ main {
 .hide-preloader {
   opacity: 0;
   z-index: -1;
-  transition: opacity 2s, z-index 1s 2s;
+  transition: opacity 2s, z-index .5s 2s;
 }
 
 @-webkit-keyframes sk-rotate {
@@ -347,7 +347,7 @@ blockquote {
   text-align: center;
   color: rgba(241, 241, 241, .9);
   background-color: rgba(0, 0, 0, .3);
-  padding: 1em .5em;
+  padding: 1em .75em;
   border-radius: 0 .5em .5em 0;
   transition: all 1s;
 }
@@ -388,7 +388,7 @@ blockquote {
   height: 210px;
   cursor: pointer;
   text-align: center;
-  transition: opacity 1s, z-index 1s 1s;
+  transition: all 2s;
 }
 
 @media screen and (min-width: 600px) {
@@ -453,7 +453,7 @@ blockquote {
   opacity: 1;
   text-align: center;
   z-index: 3;
-  transition: opacity 4s, z-index 1s 4s;
+  transition: all 2s;
 }
 
 @media screen and (min-width: 600px) {
@@ -533,7 +533,9 @@ p.image-timer-disclaimer {
   padding: .5em 1.5em;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
+  margin-bottom: 2em;
 }
+
 .start-button:hover {
   background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(
@@ -543,6 +545,7 @@ p.image-timer-disclaimer {
     );
   background-color: rgba(241, 241, 241, .7);
 }
+
 .start-button:active {
   position: relative;
   top: 1px;
@@ -552,7 +555,12 @@ p.image-timer-disclaimer {
 .hidden-message {
   opacity: 0;
   z-index: -1;
-  transition: opacity 2s, z-index 1s 1s;
+  transition: opacity 2s, z-index 1s 2s;
+}
+
+.behind-menu-icons {
+  z-index: 4 !important;
+  transition: z-index .5s;
 }
 
 .hide-me {
@@ -568,4 +576,14 @@ p.image-timer-disclaimer {
 .hide-me-important {
   opacity: 0 !important;
   transition: all .5s;
+}
+
+.extra-headline-margin {
+  margin-top: 1em;
+  transition: all .5s;
+}
+
+.top-icon {
+  top: 1.5em !important;
+  transition: all 1s;
 }

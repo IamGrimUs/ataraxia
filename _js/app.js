@@ -158,16 +158,19 @@ function diplayQuote(quoteText, quoteAuthor) {
   }
 }
 
-function menuIconSettingClick() {
-  $(".menu-icon--settings").click(function() {
-    $(".site-message-frame").toggleClass("hide-me");
-    $(".photo-info-frame").toggleClass("hide-me-important");
+function menuIconSettingClick(event) {
+  $(".menu-icon--settings").click(function(event) {
+    event.preventDefault();
+    $(".site-message-frame").toggleClass("hidden-message");
     $(".menu-icon--camera").toggleClass("hide-me");
     $(".menu-icon--quote").toggleClass("hide-me");
     $(".menu-icon--prevImage").toggleClass("hide-me");
     $(".menu-icon--nextImage").toggleClass("hide-me");
+    // $(".site-message-headline").addClass("extra-headline-margin");
+    $(".photo-info-frame").toggleClass("hide-me-important");
     $(".js-slideshowFrame blockquote").toggleClass("hide-me-important");
-    hidePreloader();
+    $(".menu-frame").toggleClass("top-icon").addClass("behind-menu-icons");
+    // hidePreloader();
   });
 }
 
