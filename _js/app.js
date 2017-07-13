@@ -3,7 +3,9 @@ const ID_STR =
   "client_id=cc682cb24c6d39c5f80d0e5b0703f516c2ce7e7a4c5028787549cc061e8b8880";
 const COLLECTIONS_URL = BASE_URL + "/collections/960351/photos/?" + ID_STR;
 const STATE = {
-  images: []
+  images: [],
+  currentIndex: 0,
+  slideShowDelayInterval: 30000
 };
 
 function welcomeMessageAction() {
@@ -24,10 +26,9 @@ function renderLoadingScreen() {
   $("main").prepend(welcomeHtml);
 }
 
-//use getJSON call to the unsplash API requesting a collection of images
 function callUnsplashAPI() {
   let query = {
-    per_page: 3
+    per_page: 30
   };
   $.getJSON(COLLECTIONS_URL, query)
     .then(saveUnsplashApiData)
@@ -36,11 +37,8 @@ function callUnsplashAPI() {
     .then(renderImages);
 }
 
-//initial callback function populates the array of returned images, the photographers name & the photo IDs
 function saveUnsplashApiData(data) {
   STATE.images.push(...data);
-  // console.log("STATE.images:");
-  // console.log(STATE.images);
   return STATE.images;
 }
 
@@ -49,12 +47,10 @@ function shuffleImageArray(array) {
     temporaryValue,
     randomIndex;
 
-  // While there remain elements to shuffle...
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    // And swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -64,7 +60,6 @@ function shuffleImageArray(array) {
 
 //capture the image object properties and display them in the html
 function saveApiObjectProperties() {
-  // console.log("showing content...");
   const state = STATE;
   let currentIndex = 0;
   for (var image of state.images) {
@@ -77,10 +72,8 @@ function saveApiObjectProperties() {
   }
 }
 
-//add the images into the html for slideshow display
 function appendHTMLElement(backgroundImage, portfolioUrl, firstName, lastName) {
-  // console.log("appending li...");
-  let imageBlock = `<li class="slideshow-image--hide js-slideshowFrame">
+  let imageBlock = `<li class="js-slideshowFrame">
             <span style="background-image: url(${backgroundImage})"></span>
             <div class="photo-info-frame">
               <p class="photographer-info"><a href="${portfolioUrl}"><i class="fa fa-camera-retro" id="camera-icon" aria-hidden="true"></i> by ${firstName} ${lastName}</a></p>
@@ -106,50 +99,75 @@ function cacheFirstImage(callback) {
 }
 
 function displayImageSlideShow() {
-  let slideIndex = 0;
   let slides = $(".js-slideshowFrame");
-  // console.log(Array.isArray(slides));
-  showSlides();
-  hidePreloader();
-  menuIconleftArrowAction(slideIndex);
-  menuIconRightArrowAction(slideIndex);
 
-  function showSlides() {
-    for (let i = 0; i < slides.length; i++) {
+  hidePreloader();
+  menuIconleftArrowAction(slides);
+  menuIconRightArrowAction(slides);
+  callForinsmaticApi();
+  for (let i = 0; i < slides.length; i++) {
+    if (i > 0) {
       $(slides[i]).addClass("slideshow-image--hide");
       $(slides[i]).removeClass("slideshow-image--reveal");
+    } else {
+      $(slides[i]).addClass("slideshow-image--reveal");
+      $(slides[i]).removeClass("slideshow-image--hide");
     }
-    slideIndex++;
-    if (slideIndex > slides.length) {
-      slideIndex = 0;
-    }
-    $(slides[slideIndex - 1]).addClass("slideshow-image--reveal");
-    $(slides[slideIndex - 1]).removeClass("slideshow-image--hide");
-    callForinsmaticApi();
-    setTimeout(showSlides, 8000); // Change image every 90 seconds
+  }
+
+  setTimeout(showSlides, STATE.slideShowDelayInterval);
+
+  function showSlides() {
+    advanceToNextSlide(slides);
+    setTimeout(showSlides, STATE.slideShowDelayInterval);
   }
 }
 
-function menuIconleftArrowAction(slides, currentImage) {
+function menuIconleftArrowAction(slides) {
   $("#js-prevImageArrow").click(function() {
     console.log("prev image please");
-    console.log(currentImage);
-    $(slides[currentImage - 1]).removeClass("slideshow-image--hide");
-    $(slides[currentImage - 1]).addClass("slideshow-image--reveal");
-    $(slides[currentImage]).removeClass("slideshow-image--reveal");
-    $(slides[currentImage]).addClass("slideshow-image--hide");
+    console.log(STATE.currentIndex);
+
+    advanceToPreviousSlide(slides);
   });
 }
 
-function menuIconRightArrowAction(slides, currentImage) {
+function menuIconRightArrowAction(slides) {
   $("#js-nextImageArrow").click(function() {
     console.log("next image please");
-    console.log(currentImage);
-    $(slides[currentImage + 1]).removeClass("slideshow-image--hide");
-    $(slides[currentImage + 1]).addClass("slideshow-image--reveal");
-    $(slides[currentImage]).removeClass("slideshow-image--reveal");
-    $(slides[currentImage]).addClass("slideshow-image--hide");
+    console.log(STATE.currentIndex);
+    advanceToNextSlide(slides);
   });
+}
+
+function advanceToNextSlide(slides) {
+  $(slides[STATE.currentIndex]).removeClass("slideshow-image--reveal");
+  $(slides[STATE.currentIndex]).addClass("slideshow-image--hide");
+
+  if (STATE.currentIndex === slides.length - 1) {
+    STATE.currentIndex = 0;
+  } else {
+    STATE.currentIndex++;
+  }
+
+  $(slides[STATE.currentIndex]).removeClass("slideshow-image--hide");
+  $(slides[STATE.currentIndex]).addClass("slideshow-image--reveal");
+  callForinsmaticApi();
+}
+
+function advanceToPreviousSlide(slides) {
+  $(slides[STATE.currentIndex]).removeClass("slideshow-image--reveal");
+  $(slides[STATE.currentIndex]).addClass("slideshow-image--hide");
+
+  if (STATE.currentIndex === 0) {
+    STATE.currentIndex = slides.length - 1;
+  } else {
+    STATE.currentIndex--;
+  }
+
+  $(slides[STATE.currentIndex]).removeClass("slideshow-image--hide");
+  $(slides[STATE.currentIndex]).addClass("slideshow-image--reveal");
+  callForinsmaticApi();
 }
 
 function hidePreloader() {
@@ -158,14 +176,12 @@ function hidePreloader() {
 }
 
 function callForinsmaticApi() {
-  // console.log("calling forinsmatic...");
   $.getJSON(
     "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?"
   ).done(saveForismaticApiData);
 }
 
 function saveForismaticApiData(response) {
-  // console.log(response);
   let quoteText = response.quoteText;
   let quoteAuthor = response.quoteAuthor;
   diplayQuote(quoteText, quoteAuthor);
@@ -191,13 +207,11 @@ function menuIconSettingAction(event) {
     $(".photo-info-frame").toggleClass("hide-me-important");
     $(".js-slideshowFrame blockquote").toggleClass("hide-me-important");
     $(".menu-frame").toggleClass("top-icon").addClass("behind-menu-icons");
-    // hidePreloader();
   });
 }
 
 function menuIconQuoteAction() {
   $(".menu-icon--quote").click(function() {
-    // console.log("you clicked the quote");
     $(".menu-icon--quote").toggleClass("red-icon");
     showOrHideQuote();
   });

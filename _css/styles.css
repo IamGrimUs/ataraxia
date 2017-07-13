@@ -303,6 +303,11 @@ main {
   transition: all 1s;
 }
 
+.photo-info-frame:hover {
+  background-color: rgba(0, 0, 0, .6);
+  transition: all 1s;
+}
+
 .photographer-info {
   font-size: 1.5em;
   letter-spacing: .06em;
@@ -318,7 +323,6 @@ main {
 }
 .photographer-info a:hover {
   padding-bottom: .05em;
-  border-bottom: 1px solid rgba(241, 241, 241, .5);
 }
 
 @media screen and (min-width: 600px) {
@@ -351,7 +355,9 @@ blockquote {
   border-radius: 0 .5em .5em 0;
   transition: all 1s;
 }
-
+blockquote:hover {
+  background-color: rgba(0, 0, 0, .6);
+}
 .quote-frame {
   font-size: 1.25em;
   line-height: 1.25;
@@ -415,16 +421,24 @@ blockquote {
   opacity: 1;
   transition: all .5s;
 }
+.menu-icon--settings:hover {
+  background-color: rgba(0, 0, 0, .6);
+  color: rgba(255, 255, 255, 1);
+}
 
-.menu-icon--settings:hover,
 .menu-icon--camera:hover,
 .menu-icon--quote:hover,
 .menu-icon--nextImage:hover,
 .menu-icon--prevImage:hover {
   background-color: rgba(95, 28, 18, .7);
-  color: rgba(241, 241, 241, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
+.menu-icon--nextImage:hover,
+.menu-icon--prevImage:hover {
+  background-color: rgba(0, 0, 0, .6);
+  color: rgba(255, 255, 255, 1);
+}
 .menu-icon--settings:active,
 .menu-icon--camera:active,
 .menu-icon--quote:active,
