@@ -1,8 +1,8 @@
 #Ataraxia end of unit course porfolio project working with API calls. A restful headspace for users to get lost in thought and imagery.
 
-![Alt text](/img/screen01.png?raw=true "Screen 0")
-![Alt text](/img/screen02.png?raw=true "Screen 1")
-![Alt text](/img/screen03.png?raw=true "Screen 2")
+![Screen shot of app preloading screen](/_img/screen01.png?raw=true "Screen 0")
+![Screen shot of welcome message](/_img/screen02.png?raw=true "Screen 1")
+![Screen shot of background image and control panel](/_img/screen03.png?raw=true "Screen 2")
 
 ##Ataraxia is a free internet space to zone out on beautiful photography and inspirational quotes. The site has not other purpose than simply existing.
 
