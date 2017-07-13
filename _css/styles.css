@@ -427,9 +427,7 @@ blockquote:hover {
 }
 
 .menu-icon--camera:hover,
-.menu-icon--quote:hover,
-.menu-icon--nextImage:hover,
-.menu-icon--prevImage:hover {
+.menu-icon--quote:hover {
   background-color: rgba(95, 28, 18, .7);
   color: rgba(255, 255, 255, 1);
 }
