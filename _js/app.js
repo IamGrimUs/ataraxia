@@ -6,7 +6,7 @@ const STATE = {
   images: []
 };
 
-function welcomeMessageClick() {
+function welcomeMessageAction() {
   $(".start-button").click(function() {
     $(".site-message-frame").addClass("hidden-message");
     $(".start-button").addClass("hidden-message");
@@ -27,7 +27,7 @@ function renderLoadingScreen() {
 //use getJSON call to the unsplash API requesting a collection of images
 function callUnsplashAPI() {
   let query = {
-    per_page: 2
+    per_page: 3
   };
   $.getJSON(COLLECTIONS_URL, query)
     .then(saveUnsplashApiData)
@@ -105,27 +105,51 @@ function cacheFirstImage(callback) {
   image.src = STATE.images[0].urls.full;
 }
 
-function displayImageSlideShow(uniqueImageId) {
-  // console.log("slideshow time...");
+function displayImageSlideShow() {
   let slideIndex = 0;
+  let slides = $(".js-slideshowFrame");
+  // console.log(Array.isArray(slides));
   showSlides();
+  hidePreloader();
+  menuIconleftArrowAction(slideIndex);
+  menuIconRightArrowAction(slideIndex);
+
   function showSlides() {
-    let slides = document.getElementsByClassName("js-slideshowFrame");
-    // console.log(slides[0]);
     for (let i = 0; i < slides.length; i++) {
       $(slides[i]).addClass("slideshow-image--hide");
       $(slides[i]).removeClass("slideshow-image--reveal");
     }
     slideIndex++;
     if (slideIndex > slides.length) {
-      slideIndex = 1;
+      slideIndex = 0;
     }
     $(slides[slideIndex - 1]).addClass("slideshow-image--reveal");
     $(slides[slideIndex - 1]).removeClass("slideshow-image--hide");
-    setTimeout(showSlides, 90000); // Change image every 90 seconds
     callForinsmaticApi();
+    setTimeout(showSlides, 8000); // Change image every 90 seconds
   }
-  hidePreloader();
+}
+
+function menuIconleftArrowAction(slides, currentImage) {
+  $("#js-prevImageArrow").click(function() {
+    console.log("prev image please");
+    console.log(currentImage);
+    $(slides[currentImage - 1]).removeClass("slideshow-image--hide");
+    $(slides[currentImage - 1]).addClass("slideshow-image--reveal");
+    $(slides[currentImage]).removeClass("slideshow-image--reveal");
+    $(slides[currentImage]).addClass("slideshow-image--hide");
+  });
+}
+
+function menuIconRightArrowAction(slides, currentImage) {
+  $("#js-nextImageArrow").click(function() {
+    console.log("next image please");
+    console.log(currentImage);
+    $(slides[currentImage + 1]).removeClass("slideshow-image--hide");
+    $(slides[currentImage + 1]).addClass("slideshow-image--reveal");
+    $(slides[currentImage]).removeClass("slideshow-image--reveal");
+    $(slides[currentImage]).addClass("slideshow-image--hide");
+  });
 }
 
 function hidePreloader() {
@@ -148,8 +172,6 @@ function saveForismaticApiData(response) {
 }
 
 function diplayQuote(quoteText, quoteAuthor) {
-  // console.log("displaying quote...");
-  // console.log(quoteText.length);
   if (quoteText.length > 64) {
     callForinsmaticApi();
   } else {
@@ -158,7 +180,7 @@ function diplayQuote(quoteText, quoteAuthor) {
   }
 }
 
-function menuIconSettingClick(event) {
+function menuIconSettingAction(event) {
   $(".menu-icon--settings").click(function(event) {
     event.preventDefault();
     $(".site-message-frame").toggleClass("hidden-message");
@@ -166,7 +188,6 @@ function menuIconSettingClick(event) {
     $(".menu-icon--quote").toggleClass("hide-me");
     $(".menu-icon--prevImage").toggleClass("hide-me");
     $(".menu-icon--nextImage").toggleClass("hide-me");
-    // $(".site-message-headline").addClass("extra-headline-margin");
     $(".photo-info-frame").toggleClass("hide-me-important");
     $(".js-slideshowFrame blockquote").toggleClass("hide-me-important");
     $(".menu-frame").toggleClass("top-icon").addClass("behind-menu-icons");
@@ -174,7 +195,7 @@ function menuIconSettingClick(event) {
   });
 }
 
-function menuIconQuoteClick() {
+function menuIconQuoteAction() {
   $(".menu-icon--quote").click(function() {
     // console.log("you clicked the quote");
     $(".menu-icon--quote").toggleClass("red-icon");
@@ -193,9 +214,8 @@ function showOrHideQuote() {
   }
 }
 
-function menuIconCameraClick() {
+function menuIconCameraAction() {
   $(".menu-icon--camera").click(function() {
-    // console.log("you clicked the camera");
     $(".menu-icon--camera").toggleClass("red-icon");
     showOrHidePhotographer();
   });
@@ -214,9 +234,9 @@ function showOrHidePhotographer() {
 
 $(function() {
   renderLoadingScreen();
-  welcomeMessageClick();
+  welcomeMessageAction();
   callUnsplashAPI();
-  menuIconSettingClick();
-  menuIconQuoteClick();
-  menuIconCameraClick();
+  menuIconSettingAction();
+  menuIconQuoteAction();
+  menuIconCameraAction();
 });
