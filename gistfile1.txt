@@ -1,1 +1,3 @@
-Help users access a restfull headspace on the internet by showcasing beautiful images from unsplash paired with inspirational quotes. 
+Help users access a restfull headspace on the internet by showcasing beautiful images from unsplash paired with inspirational quotes. User can control the display or removal of quotes as well as the photographer information. 
+
+The site has no purpose but to show beautiful photography to the user. 
