@@ -58,7 +58,6 @@ function shuffleImageArray(array) {
   return array;
 }
 
-//capture the image object properties and display them in the html
 function saveApiObjectProperties() {
   const state = STATE;
   let currentIndex = 0;
@@ -171,7 +170,6 @@ function advanceToPreviousSlide(slides) {
 }
 
 function hidePreloader() {
-  // console.log("hidding...");
   $(".spinner-wrapper").addClass("hide-preloader");
 }
 
