@@ -15,20 +15,9 @@ function welcomeMessageAction() {
   });
 }
 
-function renderLoadingScreen() {
-  let welcomeHtml = `<div class="spinner-wrapper">
-                      <h1>Ataraxia</h1>
-                      <div class="spinner">
-                        <div class="dot1"></div>
-                        <div class="dot2"></div>
-                      </div>
-                    </div>`;
-  $("main").prepend(welcomeHtml);
-}
-
 function callUnsplashAPI() {
   let query = {
-    per_page: 20
+    per_page: 15
   };
   $.getJSON(COLLECTIONS_URL, query)
     .then(saveUnsplashApiData)
@@ -245,7 +234,6 @@ function showOrHidePhotographer() {
 }
 
 $(function() {
-  renderLoadingScreen();
   welcomeMessageAction();
   callUnsplashAPI();
   menuIconSettingAction();
