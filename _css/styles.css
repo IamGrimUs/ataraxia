@@ -421,7 +421,10 @@ blockquote:hover {
   opacity: 1;
   transition: all .5s;
 }
-.menu-icon--settings:hover {
+
+.menu-icon--settings:hover,
+.menu-icon--nextImage:hover,
+.menu-icon--prevImage:hover {
   background-color: rgba(0, 0, 0, .6);
   color: rgba(255, 255, 255, 1);
 }
@@ -432,11 +435,6 @@ blockquote:hover {
   color: rgba(255, 255, 255, 1);
 }
 
-.menu-icon--nextImage:hover,
-.menu-icon--prevImage:hover {
-  background-color: rgba(0, 0, 0, .6);
-  color: rgba(255, 255, 255, 1);
-}
 .menu-icon--settings:active,
 .menu-icon--camera:active,
 .menu-icon--quote:active,

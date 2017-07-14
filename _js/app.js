@@ -28,7 +28,7 @@ function renderLoadingScreen() {
 
 function callUnsplashAPI() {
   let query = {
-    per_page: 30
+    per_page: 20
   };
   $.getJSON(COLLECTIONS_URL, query)
     .then(saveUnsplashApiData)
