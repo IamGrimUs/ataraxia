@@ -51,7 +51,7 @@ function saveApiObjectProperties() {
   const state = STATE;
   let currentIndex = 0;
   for (var image of state.images) {
-    let backgroundImage = image.urls.full;
+    let backgroundImage = image.urls.regular;
     let firstName = image.user.first_name;
     let lastName = image.user.last_name;
     let portfolioUrl = image.user.portfolio_url;
