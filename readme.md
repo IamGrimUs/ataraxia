@@ -4,7 +4,7 @@
 ![Screen shot of welcome message](/_img/screen02.png?raw=true "Screen 1")
 ![Screen shot of background image and control panel](/_img/screen03.png?raw=true "Screen 2")
 
-##Ataraxia is a free internet space to zone out on beautiful photography and inspirational quotes. The site has not other purpose than simply existing.
+##Ataraxia is a free internet space to zone out on beautiful photography and inspirational quotes. The site has no other purpose than simply existing.
 
 ##Use Case Why is this app useful? Long days behind the computer screen can be frustrating. Sometimes you have to allow yourslef to zone out. Breath deeply and let the imagination fly.
 
